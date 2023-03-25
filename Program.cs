@@ -17,7 +17,8 @@ namespace ProjectPressure
 
             while(cont == 'y')
             {
-                Console.WriteLine("===============================\n\tPressure database\t\n===============================\n");
+                Console.WriteLine("===============================\n\tPressure database\t\n===============================");
+                Console.WriteLine($"Today: {DateTime.Now}\n");
                 Console.WriteLine("Select choice:\n1. Listing count of records\n2. Add new record\n3. Delete record\n4. Listing all records\n5. Average of systolic pressure\n6. Average of diastolic pressure\n7. Average of heart rate\n");
                 menuChoice = Console.ReadKey().KeyChar;
 

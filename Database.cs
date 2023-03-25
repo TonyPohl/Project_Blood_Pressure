@@ -27,7 +27,14 @@ namespace ProjectPressure
         {
             using(SqlConnection conn = new SqlConnection(connectionString))
             {
-                conn.Open();
+                try
+                {
+                    conn.Open();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }                
                 SqlCommand cmd = new SqlCommand
                 {
                     Connection = conn,
@@ -78,7 +85,14 @@ namespace ProjectPressure
 
             using(SqlCommand sqlQuery = new SqlCommand(query, conn))
             {
-                conn.Open();
+                try
+                {
+                    conn.Open();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
                 sqlQuery.Parameters.AddWithValue("@dateTime", dateTime);
                 sqlQuery.Parameters.AddWithValue("@Systolic", systolic);
                 sqlQuery.Parameters.AddWithValue("@Diastolic", diastolic);
@@ -105,7 +119,14 @@ namespace ProjectPressure
                 string query = "DELETE FROM Pressure WHERE Id=@id";
                 using(SqlCommand sqlQuery = new SqlCommand(query, conn))
                 {
-                    conn.Open();
+                    try
+                    {
+                        conn.Open();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
                     sqlQuery.Parameters.AddWithValue("@id", id);
                     // number of affected rows
                     int rows = sqlQuery.ExecuteNonQuery();
@@ -121,7 +142,14 @@ namespace ProjectPressure
         {
             SqlConnection conn = new SqlConnection(connectionString);
             SqlCommand sqlQuery = new SqlCommand("SELECT * FROM Pressure", conn);
-            conn.Open();
+            try
+            {
+                conn.Open();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
             SqlDataReader reader = sqlQuery.ExecuteReader();
             while(reader.Read())
             {
@@ -140,15 +168,22 @@ namespace ProjectPressure
         {
             using(SqlConnection conn = new SqlConnection(connectionString))
             {
-                conn.Open();
+                try
+                {
+                    conn.Open();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
                 SqlCommand sqlQuery = new SqlCommand
                 {
                     Connection = conn,
                     CommandText = "SELECT AVG(Systolic) FROM Pressure"
                 };
-                int avgSys = (int)sqlQuery.ExecuteScalar();
+                double avgSys = (int)sqlQuery.ExecuteScalar();
                 conn.Close();
-                Console.WriteLine($"The average of all systolic pressure records is {avgSys} mmHg.");
+                Console.WriteLine($"The average of all systolic pressure records is {Math.Round(avgSys)} mmHg.");
             }
         }
         /// <summary>
@@ -158,15 +193,22 @@ namespace ProjectPressure
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                conn.Open();
+                try
+                {
+                    conn.Open();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
                 SqlCommand sqlQuery = new SqlCommand
                 {
                     Connection = conn,
                     CommandText = "SELECT AVG(Diastolic) FROM Pressure"
                 };
-                int avgDia = (int)sqlQuery.ExecuteScalar();
+                double avgDia = (int)sqlQuery.ExecuteScalar();
                 conn.Close();
-                Console.WriteLine($"The average of all diastolic pressure records is {avgDia} mmHg.");
+                Console.WriteLine($"The average of all diastolic pressure records is {Math.Round(avgDia)} mmHg.");
             }
         }
         /// <summary>
@@ -176,15 +218,22 @@ namespace ProjectPressure
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                conn.Open();
+                try
+                {
+                    conn.Open();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
                 SqlCommand sqlQuery = new SqlCommand
                 {
                     Connection = conn,
                     CommandText = "SELECT AVG(Pulse) FROM Pressure"
                 };
-                int pulse = (int)sqlQuery.ExecuteScalar();
+                double pulse = (int)sqlQuery.ExecuteScalar();
                 conn.Close();
-                Console.WriteLine($"The average of all heart rate records is {pulse} bpm.");
+                Console.WriteLine($"The average of all heart rate records is {Math.Round(pulse)} bpm.");
             }
         }
     }
