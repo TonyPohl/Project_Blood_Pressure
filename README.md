@@ -13,5 +13,10 @@ The app offers several methods:
 ![db10](https://user-images.githubusercontent.com/110770699/225678013-a1824112-795e-4e76-a0df-abe1a9a2088c.JPG)
 ![DBP](https://user-images.githubusercontent.com/110770699/225679032-2d327ae1-c521-49be-a84d-9978795e3289.JPG)
 
+Modifications(25.3.23):
+- added actual date and time
+- added exceptions
+- added rounding of average values
+
 
 
